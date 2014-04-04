@@ -14,6 +14,10 @@ void loop() {
 	displayByte(counter);
 	counter++
 	delay(1000);
+	if(counter > MAX_DISPLAY_VALUE) {
+		counter = 0;
+	}
+	
 }
 
 void displayByte(unsigned int number) {
