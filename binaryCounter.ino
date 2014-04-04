@@ -1,13 +1,31 @@
-int LED_DIGIT_1 = 0;
-int LED_DIGIT_2 = 0;
-int LED_DIGIT_4 = 0;
-int LED_DIGIT_8 = 0;
+int LED_DIGIT_1 = 2;
+int LED_DIGIT_2 = 3;
+int LED_DIGIT_4 = 4;
+int LED_DIGIT_8 = 5;
 int MAX_DISPLAY_VALUE = 15;
-int true = 1;
-int false = 0;
+//int true = 1;
+//int false = 0;
 
 void setup() {
 	allDigitsOff();
+}
+
+void loop() {
+  displayByte(1);
+  displayByte(2);
+  displayByte(3);
+  displayByte(4);
+  displayByte(5);
+  displayByte(6);
+  displayByte(7);
+  displayByte(8);
+  displayByte(9);
+  displayByte(10);
+  displayByte(11);
+  displayByte(12);
+  displayByte(13);
+  displayByte(14);
+  displayByte(15);
 }
 
 void displayByte(unsigned int number) {
