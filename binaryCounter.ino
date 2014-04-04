@@ -3,29 +3,17 @@ int LED_DIGIT_2 = 3;
 int LED_DIGIT_4 = 4;
 int LED_DIGIT_8 = 5;
 int MAX_DISPLAY_VALUE = 15;
-//int true = 1;
-//int false = 0;
+
+int counter = 0;
 
 void setup() {
 	allDigitsOff();
 }
 
 void loop() {
-  displayByte(1);
-  displayByte(2);
-  displayByte(3);
-  displayByte(4);
-  displayByte(5);
-  displayByte(6);
-  displayByte(7);
-  displayByte(8);
-  displayByte(9);
-  displayByte(10);
-  displayByte(11);
-  displayByte(12);
-  displayByte(13);
-  displayByte(14);
-  displayByte(15);
+	displayByte(counter);
+	counter++
+	delay(1000);
 }
 
 void displayByte(unsigned int number) {
@@ -34,8 +22,8 @@ void displayByte(unsigned int number) {
 		return;
 	}
 
-	for (int i = 8; i >= 1; i / 2) {
-		if (number - i >= 0) {
+	for (unsigned int i = 8; i > 0; i = i / 2) {
+		if (number >= i) {
 			digitOn(i);
 			number = number - i;
 		} else {
@@ -79,15 +67,15 @@ void digitOff(unsigned int digit) {
 }
 
 void allDigitsOn() {
-	digitOn(LED_DIGIT_1);
-	digitOn(LED_DIGIT_2);
-	digitOn(LED_DIGIT_4);
-	digitOn(LED_DIGIT_8);
+	digitOn(1);
+	digitOn(2);
+	digitOn(4);
+	digitOn(8);
 }
 
 void allDigitsOff() {
-	digitOff(LED_DIGIT_1);
-	digitOff(LED_DIGIT_2);
-	digitOff(LED_DIGIT_4);
-	digitOff(LED_DIGIT_8);
+	digitOff(1);
+	digitOff(2);
+	digitOff(4);
+	digitOff(8);
 }
