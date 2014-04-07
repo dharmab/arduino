@@ -12,7 +12,7 @@ void setup() {
 
 void loop() {
 	displayByte(counter);
-	counter++
+	counter++;
 	delay(1000);
 	if(counter > MAX_DISPLAY_VALUE) {
 		counter = 0;
