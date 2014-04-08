@@ -16,10 +16,10 @@ void setup() {
 void loop() {
 	
 	if (isButtonOn() == 1) {
+		counter++;
 		if(counter > MAX_DISPLAY_VALUE) {
 			counter = MIN_DISPLAY_VALUE;
 		}
-		counter++;
 		displayByte(counter);
 	} if else {
 		counter--;
