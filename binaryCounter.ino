@@ -2,10 +2,12 @@ int LED_DIGIT_1 = 2;
 int LED_DIGIT_2 = 3;
 int LED_DIGIT_4 = 4;
 int LED_DIGIT_8 = 5;
-int BUTTON_1 = 7;
+int BUTTON_UP = 7;
+int BUTTON_DOWN = 9;
 int MAX_DISPLAY_VALUE = 15;
+int MIN_DISPLAY_VALUE = 0;
 
-int counter = 2;
+int counter = MIN_DISPLAY_VALUE;
 
 void setup() {
 	allDigitsOff();
@@ -13,14 +15,20 @@ void setup() {
 
 void loop() {
 	
-	if (isButtonOn()) {
+	if (isButtonOn() == 1) {
 		if(counter > MAX_DISPLAY_VALUE) {
-			counter = 0;
+			counter = MIN_DISPLAY_VALUE;
 		}
 		counter++;
 		displayByte(counter);
+	} if else {
+		counter--;
+		if(counter < MIN_DISPLAY_VALUE) {
+			counter = MIN_DISPLAY_VALUE;
+		}
+		displayByte(counter);
 	}
-	delay(100);
+	delay(150);
 }
 
 void displayByte(unsigned int number) {
@@ -88,10 +96,14 @@ void displayByte(unsigned int number) {
 	}
 
 	boolean isButtonOn() {
-		int state = digitalRead(BUTTON_1);
+		int state = digitalRead(BUTTON_UP);
+		int state2 = digitalRead(BUTTON_DOWN);
 		if (state == HIGH) {
-			return true;
-			} else {
-				return false;
-			}
+			return 1;
+		} 
+		if else (state2 == HIGH) {
+			return 2;
+		} else {
+			return false;
 		}
+	}
