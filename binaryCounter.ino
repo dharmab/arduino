@@ -15,95 +15,91 @@ void setup() {
 
 void loop() {
 	
-	if (isButtonOn() == 1) {
+	if (isButtonOn(BUTTON_UP)) {
 		counter++;
 		if(counter > MAX_DISPLAY_VALUE) {
 			counter = MIN_DISPLAY_VALUE;
 		}
 		displayByte(counter);
-	} if else(isButtonOn() == 2) {
-		counter--;
-		if(counter < MIN_DISPLAY_VALUE) {
-			counter = MIN_DISPLAY_VALUE;
+		} else if(isButtonOn(BUTTON_DOWN)) {
+			counter--;
+			if(counter < MIN_DISPLAY_VALUE) {
+				counter = MIN_DISPLAY_VALUE;
+			}
+			displayByte(counter);
 		}
-		displayByte(counter);
-	}
-	delay(150);
-}
-
-void displayByte(unsigned int number) {
-	if (number >= MAX_DISPLAY_VALUE) {
-		allDigitsOn();
-		return;
+		delay(150);
 	}
 
-	for (unsigned int i = 8; i > 0; i = i / 2) {
-		if (number >= i) {
-			digitOn(i);
-			number = number - i;
-			} else {
-				digitOff(i);
+	void displayByte(unsigned int number) {
+		if (number >= MAX_DISPLAY_VALUE) {
+			allDigitsOn();
+			return;
+		}
+
+		for (unsigned int i = 8; i > 0; i = i / 2) {
+			if (number >= i) {
+				digitOn(i);
+				number = number - i;
+				} else {
+					digitOff(i);
+				}
 			}
 		}
-	}
 
-	void digitOn(unsigned int digit) {
-		switch (digit) {
-			case 1:
-			digitalWrite(LED_DIGIT_1, HIGH);
-			break;
-			case 2:
-			digitalWrite(LED_DIGIT_2, HIGH);
-			break;
-			case 4:
-			digitalWrite(LED_DIGIT_4, HIGH);
-			break;
-			case 8:
-			digitalWrite(LED_DIGIT_8, HIGH);
-			break;
+		void digitOn(unsigned int digit) {
+			switch (digit) {
+				case 1:
+				digitalWrite(LED_DIGIT_1, HIGH);
+				break;
+				case 2:
+				digitalWrite(LED_DIGIT_2, HIGH);
+				break;
+				case 4:
+				digitalWrite(LED_DIGIT_4, HIGH);
+				break;
+				case 8:
+				digitalWrite(LED_DIGIT_8, HIGH);
+				break;
+			}
 		}
-	}
 
-	void digitOff(unsigned int digit) {
-		switch (digit) {
-			case 1:
-			digitalWrite(LED_DIGIT_1, LOW);
-			break;
-			case 2:
-			digitalWrite(LED_DIGIT_2, LOW);
-			break;
-			case 4:
-			digitalWrite(LED_DIGIT_4, LOW);
-			break;
-			case 8:
-			digitalWrite(LED_DIGIT_8, LOW);
-			break;
+		void digitOff(unsigned int digit) {
+			switch (digit) {
+				case 1:
+				digitalWrite(LED_DIGIT_1, LOW);
+				break;
+				case 2:
+				digitalWrite(LED_DIGIT_2, LOW);
+				break;
+				case 4:
+				digitalWrite(LED_DIGIT_4, LOW);
+				break;
+				case 8:
+				digitalWrite(LED_DIGIT_8, LOW);
+				break;
+			}
 		}
-	}
 
-	void allDigitsOn() {
-		digitOn(1);
-		digitOn(2);
-		digitOn(4);
-		digitOn(8);
-	}
-
-	void allDigitsOff() {
-		digitOff(1);
-		digitOff(2);
-		digitOff(4);
-		digitOff(8);
-	}
-
-	boolean isButtonOn() {
-		int state = digitalRead(BUTTON_UP);
-		int state2 = digitalRead(BUTTON_DOWN);
-		if (state == HIGH) {
-			return 1;
-		} 
-		if else (state2 == HIGH) {
-			return 2;
-		} else {
-			return false;
+		void allDigitsOn() {
+			digitOn(1);
+			digitOn(2);
+			digitOn(4);
+			digitOn(8);
 		}
-	}
+
+		void allDigitsOff() {
+			digitOff(1);
+			digitOff(2);
+			digitOff(4);
+			digitOff(8);
+		}
+
+		boolean isButtonOn(int button) {
+			if (digitalRead(button) == HIGH) {
+				return true;
+			} 
+			else {
+				return false;
+			}
+		}
