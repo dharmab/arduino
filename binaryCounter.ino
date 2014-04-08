@@ -21,7 +21,7 @@ void loop() {
 			counter = MIN_DISPLAY_VALUE;
 		}
 		displayByte(counter);
-	} if else {
+	} if else(isButtonOn() == 2) {
 		counter--;
 		if(counter < MIN_DISPLAY_VALUE) {
 			counter = MIN_DISPLAY_VALUE;
